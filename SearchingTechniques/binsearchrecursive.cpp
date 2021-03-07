@@ -29,26 +29,19 @@ int a[N];
 int c, n, m, k, x, y;
 //=======================
 
-int BinarySearch(int a[], int n, int key)
+int RBinSearch(int arr[], int low, int high, int key)
 {
-  int low = 0, high = n - 1;
-  while (low <= high)
+  if (low <= high)
   {
     int mid = low + (high - low) / 2;
-    if (a[mid] == key)
-    {
-      return mid; // Found
-    }
-    elif (key < a[mid])
-    {
-      high = mid - 1;
-    }
+    if (key == arr[mid])
+      return mid;
+    if (key < arr[mid])
+      return RBinSearch(arr, low, mid - 1, key);
     else
-    {
-      low = mid + 1;
-    }
+      return RBinSearch(arr, mid + 1, high, key);
   }
-  return -1; // Key Not Found
+  return -1;
 }
 
 int main()
@@ -56,7 +49,8 @@ int main()
   ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
   int a[] = {2, 4, 5, 6, 7};
   cin >> x;
-  k = BinarySearch(a, sizeof(a) / sizeof(a[0]), x);
+  n = sizeof(a) / sizeof(a[0]);
+  k = RBinSearch(a, 0, n - 1, x);
   deb(k);
   return 0;
 }
