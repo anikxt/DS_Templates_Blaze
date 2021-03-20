@@ -73,14 +73,14 @@ Iterator in C++ is basically a pointer to element but then why can't it print th
 int main() {
 
   // Declare
-  array<int, 5> myarray;
+  array&lt;int, 5&gt; myarray;
 
   // Initialization
-  array<int, 5> myarray = {1, 2, 3, 4, 5};  // initializer list
-  array<int, 5> myarray2{1, 2, 3, 4, 5};  // uniform initialization (new method c++)
+  array&lt;int, 5&gt; myarray = {1, 2, 3, 4, 5};  // initializer list
+  array&lt;int, 5&gt;myarray2{1, 2, 3, 4, 5};  // uniform initialization (new method c++)
 
   // Assign using initializer list
-  array<int, 5> myarray;
+  array&lt;int, 5&gt; myarray;
   myarray = {1, 2, 3, 4, 5};
 
   return 0;
@@ -109,10 +109,10 @@ size(), empty(), capacity()
 int main() {
 
   // Declarations
-  vector<int> arr1;
-  vector<int> arr2(5, 20);             // range based (size place, value place)
-  vector<int> arr3 = {1, 2, 3, 4, 5};  // initializer list
-  vector<int> arr4{1, 2, 3, 4, 5};     // uniform intialization
+  vector&lt;int&gt; arr1;
+  vector&lt;int&gt; arr2(5, 20);             // range based (size place, value place)
+  vector&lt;int&gt; arr3 = {1, 2, 3, 4, 5};  // initializer list
+  vector&lt;int&gt; arr4{1, 2, 3, 4, 5};     // uniform intialization
 
   // Accessing Elements
   arr2[3] = 10; // [] is overloaded
@@ -133,6 +133,8 @@ int main() {
 4. If we want to store user defined data type in set then we will have to provide
    compare function so that set can store them in sorted order.
 5. We can pass the order of sorting while constructing set object.
+6. Few Available Operations
+   operator =, at, [ ], empty, size, max_size, insert, erase, clear, begin, end, find(x)
 
 BOTTOM LINE:
 It store unique elements and they are stored in sorted order (A/D)
@@ -141,7 +143,7 @@ It store unique elements and they are stored in sorted order (A/D)
 <pre>
 int main() {
 
-  set<int, greater> Set = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5}; // less is default
+  set&lt;int, greater&gt; Set = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5}; // less is default
   for (const auto& e : Set) {
     cout << e << endl;
   }
@@ -164,7 +166,7 @@ class Person {
 };
 
 int main() {
-  set<Person, greater<>> Set = {{30, "Rick"}, {25, "Harry"}, {22, "John"}};
+  set&lt;Person, greater<>&gt; Set = {{30, "Rick"}, {25, "Harry"}, {22, "John"}};
   for (const auto& e : Set) {
     cout << e.age << " " << e.name << endl;
   }
@@ -182,7 +184,7 @@ int main() {
 <pre>
 int main() // just an implementation example
 {
-  vector<vector<int>> Tree;
+  vector&lt;vector&lt;int&gt;&gt; Tree;
   int edge, n1, n2;
 
   cin >> edge;
@@ -227,7 +229,7 @@ int main() // just an implementation example
 3. It store key value pair in sorted order on the basis of key (assending/decending).
 4. std::map is generally used in Dictionay type problems.
 5. Few Available Operations
-   operators = at, [ ], empty, size, max_size, insert, insert_or_assign, erase, clear, begin, end, find
+   operator =, at, [ ], empty, size, max_size, insert, insert_or_assign, erase, clear, begin, end, find
 </pre>
 
 <pre>
@@ -235,8 +237,8 @@ int main() // just an implementation example
 
 int main() {
 
-  // map<string, int, less<>> Map;
-  map<string, vector<int>, less<>> Map;
+  // map&lt;string, int, less<>&gt; Map;
+  map&lt;string, vector&lt;int&gt;, less<>&gt; Map;
   Map["Banana"].push_back(90);
   Map["Apple"].push_back(23);
   // Map.insert(make_pair("Cherry",45))
@@ -282,8 +284,8 @@ int main() {
 <pre>
 int main() {
 
-  list<int> list1 = {5,2,4,6,2};
-  list<int> list2 = {7,6,1,9};
+  list&lt;int&gt; list1 = {5,2,4,6,2};
+  list&lt;int&gt; list2 = {7,6,1,9};
 
   return 0;
 }
@@ -296,28 +298,30 @@ int main() {
 <pre>
 0. std::pair is a struct template that provides a way to store two heterogeneous objects as a single unit.
 1. map, multimap, unorder_map, unorder_multimap can use pair to insert data into their structures.
-2. operator =, swap, make_pair, comparison operators(lexicographical comparison)
+2. Few Available Operations
+   operator =, swap, make_pair, comparison operators(lexicographical comparison)
+
 </pre>
 
 <pre>
-void print(pair<int, int>& obj) {
+void print(pair&lt;int, int&gt;& obj) {
 cout << obj.first << " " << obj.second << endl;
 }
 
 int main() {
   {
-    pair<int, int> obj(10, 20);
+    pair&lt;int, int&gt; obj(10, 20);
     print(obj);
   }
   {
-    pair<int, int> obj = make_pair(10, 20);
+    pair&lt;int, int&gt; obj = make_pair(10, 20);
     print(obj);
   }
   {
-    vector<pair<string, uint>> list;
+    vector&lt;pair&lt;string, uint&gt;&gt; list;
     list.push_back(make_pair("Ron", 30));
     list.push_back(make_pair("Harry", 28));
-    list.push_back(pair<string, int>("Bran", 22));
+    list.push_back(pair&lt;string, int&gt;("Bran", 22));
     list.push_back(make_pair("Peter", 18));
     for (auto& elm : list) {
       cout << elm.first << " " << elm.second << endl;
@@ -345,6 +349,8 @@ int main() {
 2. Internally, the elements are organized into buckets.
 3. It uses hashing to insert elements into buckets.
 4. This allows fast access to individual elements, because after computing the hash of the value it refers to the exact bucket the element is placed into.
+5. Few Available Operations
+   operator =, at, [ ], empty, size, max_size, insert, insert_or_assign, erase, clear, begin, end, find(x)
 
 WHY UNORDERED_MAP? 0. maintain a collection of uniqe {key:value} pairs with fast insertion and removal.
 </pre>
@@ -352,7 +358,7 @@ WHY UNORDERED_MAP? 0. maintain a collection of uniqe {key:value} pairs with fast
 <pre>
 int main()
 {
-  unordered_map<int, char> umap = {{1, 'a'}, {2, 'b'}};
+  unordered_map&lt;int, char&gt; umap = {{1, 'a'}, {2, 'b'}};
 
   // Access
   cout << umap[1] << endl;
@@ -381,6 +387,173 @@ int main()
      Found 2 b */
 
   return 0;
+}
+</pre>
+
+## Topic: Stack
+
+## std::stack
+
+<pre>
+0. std::stack class is a container adapter that gives the programmer the functionality of a stack.
+1. Internally it uses std::deque STL container.
+2. It is LIFO (last-in, first-out) data structure.
+4. std::stack allows to push(insert) and pop(remove) only from back.
+5. Few Available Operations
+   operator =, empty, size, top, push, pop
+</pre>
+
+<pre>
+void print(stack&lt;int, vector&lt;int&gt;&gt; stk) {
+  while (!stk.empty()) {
+    cout << stk.top();
+    stk.pop();  // Remove from the back
+  }
+}
+
+int main() {
+  ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+  stack&lt;nt, vector&lt;int&gt;&gt; stk; // container type that what container to use here
+
+  stk.push(2);
+  stk.push(3);
+  stk.push(4);
+
+  print(stk);
+  /* 2
+     3
+     4 */
+
+  return 0;
+}
+</pre>
+
+## Topic: Queue
+
+## std::queue
+
+<pre>
+0. std::queue class is a container adapter that gives the programmer the functionality of a queue
+1. queue is FIFO (first-in, first-out) data structure.
+2. std::queue provides only specific set of functions.
+3. std::queue allows to push(insert) at back and pop(remove) from front.
+4. Few Available Operations
+   operator =, front, back, push, pop, empty, size
+</pre>
+
+<pre>
+void print(queue&lt;int&gt; que) {
+  while (!que.empty()) {
+    cout << que.front();
+    que.pop();  // Remove from the front
+  }
+}
+
+int main() {
+  ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+  queue&lt;int&gt; que;
+
+  que.push(2);
+  que.push(3);
+  que.push(4);
+
+  print(que);
+  /* 2
+     3
+     4 */
+
+  return 0;
+}
+</pre>
+
+## Topic: Dequeue
+
+## std::dequeue
+
+<pre>
+0. std::deque is an indexed sequence container.
+1. It allows fast insertion at both beginning and end.
+2. Unlike vector elements of deque are not stored contiguous.
+3. it uses individual allocated fixed size array, with additional bookkeeping, meaning index based access to deque
+   must perform two pointer dereference, but in vector we get in one dereference.
+4. The storage of a deque is automatically expanded and contracted as needed.
+5. Expansion of deque is cheaper than expansion of vector.
+6. A deque holding just one element has to allocate its full internal array (e.g. 8 times the object size on 
+   64-bit libstdc++; 16 times the object size or 4096 bytes, whichever is larger, on 64-bit libc++).
+7. Few Available Operations
+   operator =, [], at, push_front, push, pop_front, pop_back, insert, clear, erase, front, back, size, swap, begin, end
+
+TIME COMPLEXITY:
+Random access - constant O(1)
+Insertion or removal of elements at the end or beginning - constant O(1)
+Insertion or removal of elements - linear O(n)
+</pre>
+
+<pre>
+int main() 
+{
+  deque&lt;int&gt; dqu = {2, 3, 4};
+  dqu.push_front(1);
+  dqu.push_back(5);
+  print(dqu);
+
+  deque&lt;int&gt; dqu = {2, 3, 4};
+  dqu.pop_front();
+  dqu.pop_back();
+  print(dqu);
+
+  /* 1 2 3 4 5
+     3 */  
+
+  return 0;
+}
+</pre>
+
+## Topic: Priority Queue
+
+## std::priority_queue
+
+<pre>
+0. std::priority_queue is a container adaptor that provides constant time lookup of the 
+   largest OR smallest element.
+1. By default std::vector is the container used inside.
+2. Cost of insertion and extraction is logarithmic.
+3. std::priority_queue is implemented using std::make_heap, std::push_heap, std::pop_heap functions.
+4. Few Available Operations
+   operators = empty, size, top, push, pop, swap
+</pre>
+
+<pre>
+template &lt;typename T&gt;
+void print_queue(T& q) {
+  while (!q.empty()) {
+    cout << q.top() << " ";
+    q.pop();
+  }
+  cout << endl;
+}
+
+
+int main() {
+  priority_queue&lt;int&gt; q;
+  for (int elm : {1, 8, 5, 6, 3, 4, 0, 9, 7, 2}) { q.push(elm); }
+  print_queue(q);
+
+  priority_queue&lt;int, vector&lt;int&gt;, greater&gt;int&gt;&gt; q2;
+  for (int elm : {1, 8, 5, 6, 3, 4, 0, 9, 7, 2}) { q2.push(elm); }
+  print_queue(q2);
+
+  // Using lambda to compare elements.
+
+  auto cmp = [](int left, int right) { return (left) < (right); };
+  priority_queue&lt;int, vector&lt;int&gt;, decltype(cmp)&gt; q3(cmp);
+
+  for (int elm : {1, 8, 5, 6, 3, 4, 0, 9, 7, 2}) { q3.push(elm); }
+  print_queue(q3);
+
+  /* 9 8 7 6 5 4 3 2 1 0 
+     0 1 2 3 4 5 6 7 8 9 
+     9 8 7 6 5 4 3 2 1 0 */
 }
 </pre>
 
