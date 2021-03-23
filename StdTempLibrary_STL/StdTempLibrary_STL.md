@@ -413,7 +413,7 @@ void print(stack&lt;int, vector&lt;int&gt;&gt; stk) {
 
 int main() {
   ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-  stack&lt;nt, vector&lt;int&gt;&gt; stk; // container type that what container to use here
+  stack&lt;int, vector&lt;int&gt;&gt; stk; // container type that what container to use here
 
   stk.push(2);
   stk.push(3);
@@ -466,9 +466,9 @@ int main() {
 }
 </pre>
 
-## Topic: Dequeue
+## Topic: Deque
 
-## std::dequeue
+## std::deque
 
 <pre>
 0. std::deque is an indexed sequence container.
