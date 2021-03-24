@@ -62,12 +62,10 @@ int main() {
   for (int i = k; i < n; ++i) {
     // drop the elements that are out of window
     while (!q.empty() && q.front() <= i - k) {
-      deb(q.front());
       q.pop_front();
     }
     // remove those elements smaller than the current element from back
     while (!q.empty() && a[i] <= a[q.back()]) {
-      deb(q.back());
       q.pop_back();
     }
     q.push_back(i);
