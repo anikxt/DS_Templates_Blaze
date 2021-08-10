@@ -25,21 +25,39 @@ int a[N];
 int c, k, m, n, t, x, y;
 //=======================
 
-// Even Fibonacci numbers
+unordered_set<string> r;
+
+void go(string s, int len, string res)
+{
+    for (int i = 1; i <= len; ++i)
+    {
+        string pre = s.substr(0, i);
+        if (r.find(pre) != r.end())
+        {
+            if (i == len)
+            {
+                res += pre;
+                cout << res << endl;
+            }
+            go(s.substr(i, len - i), len - i, res + pre + " ");
+        }
+    }
+}
 
 int main()
 {
     blaze;
-    int x = 1, y = 2, z = 2;
-    while (x < 4000000)
-    {
-        x += y;
-        swap(x, y);
-        if (y % 2 == 0)
-        {
-            z += y;
-        }
-    }
-    deb(z);
+#ifndef ONLINE_JUDGE
+    freopen("/media/blaze/Data/Ember/input.txt", "r", stdin);
+    freopen("/media/blaze/Data/Ember/output.txt", "w", stdout);
+#endif
+    r.insert("I");
+    r.insert("love");
+    r.insert("ham");
+    r.insert("and");
+    r.insert("beef");
+    r.insert("andbeef");
+    string s = "Ilovehamandbeef";
+    go(s, s.size(), "");
     return 0;
 }

@@ -7,6 +7,7 @@ using namespace std;
 #define gc getchar_unlocked
 #define fab(a, b, i) for (int i = a; i < b; ++i)
 #define deb(x) cout << #x << "=" << x << endl
+#define deb2(x, y) cout << #x << "=" << x << " " << #y << "=" << y << endl
 #define pb push_back
 #define mp make_pair
 #define f first
@@ -25,33 +26,27 @@ int a[N];
 int c, k, m, n, t, x, y;
 //=======================
 
-// Interactive Problem
-
-// https://www.codechef.com/COOK127C/problems/GUESSIT
+int recursiveWIS(int *a, int idx)
+{
+    if (idx < 0) // base case #1
+        return 0;
+    if (idx == 0) // base case #2
+        return a[0];
+    // recursion when n >= 2
+    int s1 = recursiveWIS(a, idx - 1);
+    int s2 = recursiveWIS(a, idx - 2);
+    return max(s1, s2 + a[idx]);
+}
 
 int main()
 {
-  blaze;
-  cin >> t;
-  while (t--)
-  {
-    int f = 1;
-    fab(0, 1000, i)
-    {
-      cout << i * i << endl;
-      cout << flush;
-      n = 0;
-      cin >> n;
-      if (n == 1)
-      {
-        break;
-      }
-      else if (n == -1)
-      {
-        exit(0);
-      }
-    }
-    cout << flush;
-  }
-  return 0;
+    blaze;
+#ifndef ONLINE_JUDGE
+    freopen("/media/blaze/Data/Ember/input.txt", "r", stdin);
+    freopen("/media/blaze/Data/Ember/output.txt", "w", stdout);
+#endif
+    int a[] = {1, 4, 5, 4};
+    n = sizeof(a) / sizeof(a[0]);
+    cout << recursiveWIS(a, n - 1) << endl;
+    return 0;
 }

@@ -5,16 +5,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define gc getchar_unlocked
-#define fab(a, b, i) for (int i = a; i < b; ++i)
 #define deb(x) cout << #x << "=" << x << endl
-#define pb push_back
-#define mp make_pair
-#define f first
-#define se second
-#define all(x) x.begin(), x.end()
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
-#define PI 3.1415926535897932384626
 #define endl '\n'
 #define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 typedef long long int ll;
@@ -25,13 +16,35 @@ int a[N];
 int c, k, m, n, t, x, y;
 //=======================
 
-// Multiples of 3 and 5
+// Subsequence of a string in lexicographical order
+
+set<string> s;
+string temp = "";
+
+void go(string str, int pos)
+{
+    s.insert(temp);
+    for (int i = pos; i < str.size(); ++i)
+    {
+        temp += str[i];
+        go(str, i + 1);
+        temp.pop_back();
+    }
+}
 
 int main()
 {
     blaze;
-    int a = 999 / 3, b = 999 / 5, c = 999 / 15;
-    a = (a * (3 + a * 3)) / 2, b = (b * (5 + b * 5)) / 2, c = (c * (15 + c * 15)) / 2;
-    cout << a + b - c << endl;
+#ifndef ONLINE_JUDGE
+    freopen("/media/blaze/Data/Ember/input.txt", "r", stdin);
+    freopen("/media/blaze/Data/Ember/output.txt", "w", stdout);
+#endif
+    string str;
+    cin >> str;
+    go(str, 0);
+    for (auto i : s)
+    {
+        cout << i << endl;
+    }
     return 0;
 }

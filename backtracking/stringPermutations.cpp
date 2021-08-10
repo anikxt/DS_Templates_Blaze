@@ -25,40 +25,40 @@ int a[N];
 int c, k, m, n, t, x, y;
 //=======================
 
-bool palCheck(int n)
+void stringPermutations(string s)
 {
-    deb(n);
-    int reversed = 0;
-    int x = n;
-    while (x)
+    sort(s.begin(), s.end());
+    do
     {
-        int last = x % 10;
-        int reversed = reversed * 10 + last;
-        deb(reversed);
-        x /= 10;
+        cout << s << endl;
+    } while (next_permutation(s.begin(), s.end()));
+}
+
+void permutationBacktrack(string s, int n, int i)
+{
+    if (i == n - 1)
+    {
+        cout << s << endl;
+        return;
     }
-    return n == reversed ? true : false;
+    for (int j = i; j < n; ++j)
+    {
+        swap(s[i], s[j]);
+        permutationBacktrack(s, n, i + 1);
+        // Backtrack state to restore string to it's original state
+        swap(s[i], s[j]);
+    }
 }
 
 int main()
 {
     blaze;
-    int number = 0;
-    int largest = 999, smallest = 100;
-    for (int i = largest; i > smallest; i--)
-    {
-        for (int j = i; j > smallest; j--)
-        {
-            if (palCheck(i * j) and i * j > number)
-            {
-                number = i * j;
-                if (j > smallest)
-                    smallest = j;
-                cout << "NO" << endl;
-            }
-        }
-        break;
-    }
-    deb(number);
+#ifndef ONLINE_JUDGE
+    freopen("/media/blaze/Data/Ember/input.txt", "r", stdin);
+    freopen("/media/blaze/Data/Ember/output.txt", "w", stdout);
+#endif
+    string s;
+    cin >> s;
+    permutationBacktrack(s, s.size(), 0);
     return 0;
 }
