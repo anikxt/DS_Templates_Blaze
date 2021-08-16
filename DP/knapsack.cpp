@@ -62,7 +62,7 @@ vector<int> knapsackReconstruction(int *size, int *value, int n, int Capacity)
 {
     vector<int> Solution; // items in an optimal solution
     int c = Capacity;     // remaining capacity
-    int a[n + 1][Capacity + 1];
+    int a[n + 1][Capacity + 1]; 
     for (int i = n; i >= 1; i--)
     {
         if (size[i] <= c and a[i - 1][c - size[i]] + value[i] >= a[i - 1][c])
