@@ -2,11 +2,8 @@
 
 int solve()
 {
-  cin >> n;
-  int a[n];
-  fab(0, n, i) { cin >> a[i]; }
-  cin >> t;
-  sort(a, a + n);
+  int a[n]; // sorted
+  int t; // target element
   int low = 0, high = n - 1;
   while (low <= high)
   {
