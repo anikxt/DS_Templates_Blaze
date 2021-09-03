@@ -10,7 +10,7 @@ public:
             int mid = left + (right - left) / 2;
             if((long long) mid * mid <= x) {
                 ans = mid;
-                left = mid + 1; // we're looking for the last element satisfying the condition
+                left = mid + 1; // we're looking for the last (rightmost) element satisfying the condition
             }
             else {
                 right = mid - 1;
