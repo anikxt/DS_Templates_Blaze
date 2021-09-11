@@ -31,6 +31,8 @@ int solve()
 
 // Rotated array (Search element in a circular sorted array)
 
+// // if(duplicates)linear search; else binary search; 
+
 int solveT()
 {
     int n;
