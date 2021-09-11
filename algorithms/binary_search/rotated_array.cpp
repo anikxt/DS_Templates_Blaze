@@ -9,19 +9,19 @@ int solve()
     int low = 0, high = n - 1;
     while (low <= high)
     {
-        if (a[low] < a[high]) // Case 1
+        if (a[low] <= a[high]) // Case 1
             return low;
         int mid = low + (high - low) / 2;
         int next = (mid + 1) % n, prev = (mid + n - 1) % n;
-        if (a[mid] < a[prev] and a[mid] < a[next]) // Case 2
+        if (a[mid] <= a[prev] and a[mid] <= a[next]) // Case 2
         {
             return mid;
         }
-        else if (a[mid] < a[high])
+        else if (a[mid] <= a[high])
         {
             high = mid - 1;
         }
-        else if (a[low] < a[mid])
+        else if (a[low] <= a[mid])
         {
             low = mid + 1;
         }
@@ -46,7 +46,7 @@ int solveT()
         {
             return mid;
         }
-        else if (a[mid] < a[high])
+        else if (a[mid] <= a[high])
         {
             if (target > a[mid] and target <= a[high])
             {
@@ -57,7 +57,7 @@ int solveT()
                 high = mid - 1;
             }
         }
-        else if (a[low] < a[mid])
+        else if (a[low] <= a[mid])
         {
             if (target >= a[low] and target < a[mid])
             {
