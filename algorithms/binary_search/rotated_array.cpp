@@ -1,65 +1,71 @@
-// Rotated array (find the smallest element)
+// Rotated array (How many times is a sorted array rotated?)
+
+// if(duplicates)linear search; else binary search; 
 
 int solve()
 {
-  cin >> n;
-  int a[n];
-  fab(0, n, i) { cin >> a[i]; }
-  int low = 0, high = n - 1;
-  while (low <= high)
-  {
-    if (a[low] <= a[high])
+    int n;
+    int a[n];
+    int low = 0, high = n - 1;
+    while (low <= high)
     {
-      return low;
+        if (a[low] < a[high]) // Case 1
+            return low;
+        int mid = low + (high - low) / 2;
+        int next = (mid + 1) % n, prev = (mid + n - 1) % n;
+        if (a[mid] < a[prev] and a[mid] < a[next]) // Case 2
+        {
+            return mid;
+        }
+        else if (a[mid] < a[high])
+        {
+            high = mid - 1;
+        }
+        else if (a[low] < a[mid])
+        {
+            low = mid + 1;
+        }
     }
-    int mid = low + (high - low) / 2;
-    int prev = (mid + n - 1) % n;
-    int next = (mid + 1) % n;
-    if (a[mid] < a[prev] and a[mid] < a[next])
-    {
-      return mid;
-    }
-    else if (a[mid] < a[high])
-    {
-      high = mid - 1;
-    }
-    else if (a[low] < a[mid])
-    {
-      low = mid + 1;
-    }
-  }
-  return -1;
+    return -1;
 }
 
-// Rotated array (find the target element)
+// Rotated array (Search element in a circular sorted array)
 
 int solveT()
 {
-  cin >> n;
-  int a[n];
-  fab(0, n, i) { cin >> a[i]; }
-  int low = 0, high = n - 1;
-  while (low <= high)
-  {
-    int mid = low + (high - low) / 2;
-    if (t == a[mid])
+    int n;
+    int a[n];
+    int target;
+    int low = 0, high = n - 1;
+    while (low <= high)
     {
-      return mid;
+        int mid = low + (high - low) / 2;
+        if (a[mid] == target)
+        {
+            return mid;
+        }
+        else if (a[mid] < a[high])
+        {
+            if (target > a[mid] and target <= a[high])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
+            }
+        }
+        else if (a[low] < a[mid])
+        {
+            if (target >= a[low] and target < a[mid])
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
     }
-    if (a[mid] < a[high])
-    {
-      if (a[mid] < t and t <= a[high])
-        low = mid + 1;
-      else
-        high = mid - 1;
-    }
-    else
-    {
-      if (a[low] <= t and t < a[mid])
-        high = mid - 1;
-      else
-        low = mid + 1;
-    }
-  }
-  return -1;
+    return -1;
 }
