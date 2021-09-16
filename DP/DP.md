@@ -58,13 +58,13 @@ by combining subproblem solutions
 
 **Example:** Fibonacci Numbers
 
-| 						                |   					                                        | 			     	         |
+| 			      |   		                                    | 			   |
 | --------------------------- | --------------------------------------------------- | -------------------- |
-| <u>_subproblems:_</u>       | _F<sub>k</sub> for 1 $\leq$ k $\leq$ n_             | _# subprobs: n_			 |       
-| <u>_guess:_</u>     	      | _nothing_ 				 						                      | _# choices: 1_		   |       
+| <u>_subproblems:_</u>       | _F<sub>k</sub> for 1 &le; k &le; n_                 | _# subprobs: n_	   |       
+| <u>_guess:_</u>     	      | _nothing_       		                    | _# choices: 1_	   |       
 | <u>_recurrence:_</u>        | _F<sub>k</sub> = F<sub>k-1</sub> + F<sub>k-2</sub>_ | _# time/subpr: Θ(1)_ |       
-| <u>_topological order:_</u> | _for k = 1,...,n_  								                  | _# total time: Θ(n)_ |       
-| <u>_original problem:_</u>  | _F<sub>n</sub>_  								                  	| _# extra time: Θ(1)_ |       
+| <u>_topological order:_</u> | _for k = 1,...,n_ 	                            | _# total time: Θ(n)_ |       
+| <u>_original problem:_</u>  | _F<sub>n</sub>_  		                    | _# extra time: Θ(1)_ |       
 
 <p>&nbsp</p>
 
@@ -77,23 +77,23 @@ by combining subproblem solutions
 <p>&nbsp</p>
 
 ## *Useful problems for strings/sequences x:*
-| 				  	        |           	 		  |   	                        |
+|     	  	      |           	  | 	                        |          
 | ------------------- | ----------------- | --------------------------- |
 | suffixes x[i :]     | Θ(\|x\|)          | ← cheaper ⇒ use if possible | 
-| prefixes x[: i]     | Θ(\|x\|) 		      | ← cheaper ⇒ use if possible |
-| substrings x[i : j] | Θ(x<sup>2</sup> ) |             						    |
+| prefixes x[: i]     | Θ(\|x\|)          | ← cheaper ⇒ use if possible |
+| substrings x[i : j] | Θ(x<sup>2</sup>)  |                   	        |
 
 <p>&nbsp</p>
 
 ## *Parent Pointers:*
 To recover actual solution in addition to cost, store <u>parent pointers</u> (which guess used at each subproblem) & walk back.
 > * typically: remember argmin/argmax in addition to min/max
-> * just like memoization & bottom-up, this transformation is <u>automatic</u>
+> * just like memoization & bottom-up, this transformation is <u>automatic</u>,
 no thinking required!
 
 <p>&nbsp</p>
 
-## *Polynomial and Pseudopolynomial time*
+## *Polynomial and Pseudopolynomial time:*
  - Time Complexity is based on the input. 
  - In knapsack problem, Inputs are the no. of items N, knapsack capacity W, weight & value arrays. We construct dp table as _**N * W**_. so we feel as its of polynomial time complexity. 
  - But, **input W is an integer**, _not an array_. So, it will be _O(**N** * **(no. of bits required to store given W)**)_.
