@@ -1,0 +1,42 @@
+Condition for a simple graph to be a tree:
+1. N nodes. all pairs connected with N - 1 edge.
+2. Only one simple path between any pair of nodes
+3. 1 Connected Component, No Cycle.
+
+Terminologies:
+1. Rooted
+2. Unrooted
+
+height/level/depth - distance from the root is the level of that node
+
+Leaf - anything that has a parent and no child
+
+Subtree
+
+Diameter of a tree - length of the longest path between any two nodes
+
+Algorithm:
+  X ---any farthest---> Y ---any farthest---> Z
+random
+ node
+
+ (Y - Z) is a Diameter
+
+ minimum time (1 unit per node) to cover all nodes (i.e. to traverse the whole tree):
+  2*E - Diameter
+
+Center of a tree - doesn't change irrespective of diameter. Can't be more than 2.
+Every diameter passes thru all the centers of the tree.
+
+Case 1: 1 Center : Every Subtree pe leaves nikaalo at the distance (D/2-1) and the answer is Sum of all pair products
+
+Case 2: 2 Centers : Calculate number of nodes at a distance floor(D/2) from both the centers, say x1 and x2, the answer is going to be x1*x2.
+
+Centroid: The node which divides the subtrees in <= N/2 size (where N is the no. of nodes in a tree).
+
+
+ADVANCED TREE CONCEPT:
+DS + Euler Tour -> Subtree Queries (Still Relevant)
+HLD -> Path Queries
+Centroid Decomposition -> Counting Path
+Reachability Tree -> Find reachability from a particular node 

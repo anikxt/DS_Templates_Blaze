@@ -1,0 +1,5 @@
+Finding the LCA Efficiently: Intuition
+
+Step 1: Bring to same level
+
+Step 2: Jump simultaneously till not same

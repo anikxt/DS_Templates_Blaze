@@ -1,0 +1,21 @@
+DFS Tree -> Undirected|-> Articulation Points 
+					  |-> Bridges
+					   
+These are the properties of graphs and not the DFS tree.
+
+DFS_num[x] --> First Time this node got visited
+in_time[x]
+
+
+
+lo_time[x] --> In the subtree, smallest DFS_num reachable  using|-> Forward Edges
+low_time[x]													    |-> Backward Edges			
+
+if v is the parent of x => lotime(x) >= intime(v) => v is the articulation point provided v is not the root & x will become a new component
+
+v - x is a bridge iff lotime[x] > intime[v]
+
+Concept:
+Bridge Tree
+BCC Decomposition
+SCC Decomposition - Tarjan's Algorithm
