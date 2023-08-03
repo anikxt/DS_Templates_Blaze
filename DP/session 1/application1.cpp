@@ -60,7 +60,7 @@ int rec2(int i) { // min cuts for [1...i]
    }
 
    if (dp2[i] != -1) {
-      return dp[i];
+      return dp2[i];
    }
 
    int ans = 1e9;

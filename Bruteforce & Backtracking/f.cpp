@@ -31,6 +31,8 @@ ll mod_inv(ll x) {return power(x, MOD - 2);}
 ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
+// Generating Permutations
+
 int n;
 map<int, int> mp;
 
@@ -45,11 +47,13 @@ void rec(int level) {
 	}
 
 	for (auto v : mp) {
-		mp[v.first]--;
-		cur_perm.push_back(v.first);
-		rec(level + 1);
-		cur_perm.pop_back();
-		mp[v.first]++;
+		if (v.second != 0) {
+			mp[v.first]--;
+			cur_perm.push_back(v.first);
+			rec(level + 1);
+			cur_perm.pop_back();
+			mp[v.first]++;
+		}
 	}
 }
 
@@ -70,7 +74,7 @@ int main()
 {
 	blaze;
 	int t = 1;
-	cin >> t;
+	// cin >> t;
 	for (int i = 1; i <= t; ++i)
 	{
 		// cout << "Case #" << i << ": ";

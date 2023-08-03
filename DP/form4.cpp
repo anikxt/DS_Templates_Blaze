@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 typedef long long int ll;
 #define gc getchar_unlocked
@@ -33,11 +34,15 @@ ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 
 // LR DP
 
+// +arr[l] - dp(l+1,r) => +arr[l] - (P2 - P1)
+// (+arr[l] + P1) - (P2)
+//    P1total     - P2total
+
 int n;
 int arr[2021];
 
 bool done[2021][2021];
-int dp[2021];
+int dp[2021][2021];
 int rec(int l, int r) {
 	// base case
 	if (l == r) {

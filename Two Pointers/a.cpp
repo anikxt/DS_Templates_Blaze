@@ -74,6 +74,7 @@ void solve()
         // cout << tail << " " << head << endl;
 
         // update the answer accordingly.
+        // both are inclusive that's why add +1
         ans = max(ans, head - tail + 1);
         // A = O(1)
 

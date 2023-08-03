@@ -13,20 +13,21 @@ using ll = long long int;
 
 ll binary_exponentiation(ll a, ll b, int mod) // O(log b)
 {
-    ll ans = 1;
-    while (b)
+    a %= mod;
+    ll res = 1;
+    while (b > 0)
     {
         if (b % 2 == 1)
         {
-            ans = (ans * a) % mod;
+            res = (res * a) % mod;
         }
         a = (a * a) % mod;
-        b /= 2;
+        b >>= 2;
     }
-    return ans;
+    return res;
 }
 
-// a^-1 mod p = a^(p-2) mod p\
+// a^-1 mod p = a^(p-2) mod p
 // O(log p)
 
 int main()

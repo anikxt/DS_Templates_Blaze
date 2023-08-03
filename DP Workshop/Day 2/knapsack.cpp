@@ -72,7 +72,7 @@ void solve()
   }
   cin >> x >> k;
   memset(dp, -1, sizeof(dp));
-  cout << rec(1, 0, 0) << endl;
+  cout << rec(0, 0, 0) << endl;
   return;
 }
 

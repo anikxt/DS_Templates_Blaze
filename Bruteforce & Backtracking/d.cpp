@@ -31,7 +31,7 @@ ll mod_inv(ll x) {return power(x, MOD - 2);}
 ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
-// Knights - 1
+// Knights - 1 / K Knights
 
 int n, k;
 int ans;
@@ -40,6 +40,7 @@ int board[14][14];
 
 int dx[] = {1, 2, 2, 1, -1, -2, -2, -1};
 int dy[] = { 2, 1, -1, -2, -2, -1, 1, 2};
+
 
 bool check1(int i, int j) {
    if (board[i][j] == 1)return 0;
@@ -53,7 +54,7 @@ bool check1(int i, int j) {
    return 1;
 }
 
-void rec(int level, int lastx, int lasty) {
+void rec(int level, int lastx, int lasty) { // level = no. of knights placed
    if (level == k) {
       ans++;
       // board gives the solution
@@ -80,7 +81,7 @@ void rec(int level, int lastx, int lasty) {
 void solve()
 {
    cin >> n >> k;
-   ans  = 0;
+   ans = 0;
    rec(0, 0, -1);
    cout << ans << endl;
    return;

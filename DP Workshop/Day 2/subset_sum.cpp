@@ -43,7 +43,7 @@ int rec(int level, int taken) {
     return 0;
 
   //base case
-  if (level == n + 1) {
+  if (level == n) {
     if (taken == t)
       return 1;
     else return 0;
@@ -75,7 +75,7 @@ void solve()
   }
   cin >> t;
   memset(dp, -1, sizeof(dp));
-  cout << rec(1, 0);
+  cout << rec(0, 0);
   return;
 }
 
