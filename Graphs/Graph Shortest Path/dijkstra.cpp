@@ -31,6 +31,12 @@ ll mod_inv(ll x) {return power(x, MOD - 2);}
 ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
+
+/*
+Consider the undirected graph with just edge 1 2 1 and the directed graph with edge 1 2 1.
+The distance between 2 to 1 in the undirected graph is 1, but in the directed graph is +inf.
+*/
+
 class prioritize {
 public: bool operator ()(pii &p1, pii &p2) {
 		return p1.s > p2.s;
@@ -44,14 +50,8 @@ ll dist[100100];
 int vis[100100];
 
 void dijkstra(int sc) {
-	for (int i = 1; i <= n; ++i)
-	{
-		dist[i] = 1e18;
-		vis[i] = 0;
-	}
-
-	dist[sc] = 0;
 	priority_queue<pii, vector<pii>, prioritize> pq;
+	dist[sc] = 0;
 	pq.push(mp(sc, 0));
 
 	while (!pq.empty()) {
@@ -60,7 +60,6 @@ void dijkstra(int sc) {
 
 		if (vis[fs.f])
 			continue;
-
 		vis[fs.f] = 1;
 
 		for (auto v : g[fs.f]) {
@@ -82,7 +81,12 @@ void solve()
 		int a, b, c;
 		cin >> a >> b >> c;
 		g[a].push_back({b, c});
-		g[b].push_back({a, c});
+	}
+
+	for (int i = 1; i <= n; ++i)
+	{
+		dist[i] = 1e18;
+		vis[i] = 0;
 	}
 
 	dijkstra(1);

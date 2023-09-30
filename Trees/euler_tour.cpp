@@ -6,7 +6,7 @@ using namespace std;
 //=======================
 
 /*
-
+Properties of Euler Tour:
 1. len = 2 * size(subtree)
 2. child range in parent range
 3. cuts only ancestors
@@ -62,7 +62,7 @@ void query(int id, int l, int r, int lq, int rq) {
 	}
 
 	int mid = (l + r) / 2;
-	return query(id << 1, l, mid, lq, rq) + query(id << 1 | 1, mid - 1, r, lq, rq);
+	return query(id << 1, l, mid, lq, rq) + query(id << 1 | 1, mid + 1, r, lq, rq);
 }
 
 int main() {

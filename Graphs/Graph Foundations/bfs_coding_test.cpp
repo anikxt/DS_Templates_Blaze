@@ -56,7 +56,7 @@ bool check(int x, int y) { // is a valid cell
     return 0;
 }
 
-void process(vector < pair<int, int>> pos[]) {
+void process(vector<pair<int, int>> pos[]) {
     for (int dir = 0; dir < 4; ++dir)
     {
         for (auto v : pos[dir]) {

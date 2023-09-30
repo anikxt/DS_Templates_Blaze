@@ -1,0 +1,91 @@
+
+Blaze — 
+Can you elaborate more scenarios in graphs where we use this technique of reversing the edges?
+
+magnus — 
+any time when you want to walk backwards along an edge in a directed graph
+you make the reverse graph because then you can find those edges fast
+
+Blaze — 
+gotcha
+so just like in this case where we want to traverse from largest node to smallest node, right?
+
+magnus — 
+no
+we want to traverse from end of topological order to start of topological order
+
+Blaze — 
+what if I simply traverse from larger node to smaller node, will that be wrong, technically?
+
+magnus —
+it won't necessarily be a topological order
+
+Blaze — 
+I see. So reversing the edges doesn't mean traversing from larger node to smaller, did I get that right?
+
+magnus —
+true
+
+Blaze — 
+okay one last question, is topological ordering of reverse edges the same as reversing the order of topological ordering of the original graph?
+
+magnus —
+yes
+
+Blaze — 
+gg boi magnus orz
+
+
+/*
+// https://codeforces.com/contest/825/problem/E
+
+So what the problem asks is to put 1 as early as possible in the lexicographical order,
+and then 2 the earliest you can among those where 1 is earliest and so on.
+
+And then greedy doesn't work from the start of the lexicographical order,
+because choosing to take something small might delay the time at which you reach 1.
+
+Like in,
+n=3, m=1
+3 1
+Here, a greedy might start with 2 because it's smaller than 3,
+but taking the 3 would be better because it lets us reach 1 faster.
+
+Our number 1 priority is to get number 1 as early as possible,
+but from the left side that's hard because we don't really know which things need to be taken to reach it without first doing a lot of pre-processing.
+
+But if we construct the lexicographical order from the right side, it's easy
+we can just wait with taking 1 until there are no other options
+getting 1 as late as possible from the end will put it as early as possible from the left
+
+Now what do we do about 2? we can do the same thing,
+except we delay taking 2 until we have no other choice than taking 2, and possibly taking 1.
+But we would rather take 2 than 1 if those are the only options,
+and extending this idea all the way to n will just result in
+taking the max at each step when constructing the order backwards
+
+Taking 2 before 1 helps in placing it as right as possible, is it correct?
+Taking 2 before 1 helps us put 1 as left as possible which is more important than getting 2 to the left.
+
+Just reverse the edges of the graph and do the greedy you had originally, but with max instead of min.
+
+Reason:
+ We can't just do a lexographically smallest topological sort.
+ Say we have 5 vertices, 1...5, and we want 5 before 3.
+ The lexographically smallest topological sort is 1 2 4 5 3,
+ but the correct solutoin is 1 2 5 3 4, because the 3 is
+ inserted as soon as possible. To solve this question, we
+ can just reverse the edges and compute the lexographically
+ largest topological sort, because the courses with smaller
+ numbers will get pushed to the end. We just output the
+ reverse of the resulting sequence to get our answer.
+ 
+
+I'll try to explain the reason as to why it doesn't work in the reverse direction.
+
+In the editorial's solution, the label of one vertex increases (X -> N), whereas the labels of some vertices decrease. In this, there is always some vertex having a lesser index whose label is decreased. So, the new labeling is lexicographically smaller than the previous one.
+
+While applying the same thing in the reverse direction, the label of one of the vertices decreases (X -> 1), whereas the labels of some vertices increase. Here, it might be possible that some vertex for which the label is getting increased might have a smaller index than the current vertex. So, in this case, we might end up having a lexicographically larger labeling.
+
+So, the proof for the reverse case can not be established using a similar reasoning.
+*/

@@ -32,7 +32,7 @@ void solve() {
         }
     }
     dfs(maxch, 0, 0);
-    int maxch = 1;
+    maxch = 1;
     for (int j = 2; j <= n; j++) {
         if (dep[j] > dep[maxch]) {
             maxch = j;

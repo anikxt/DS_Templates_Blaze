@@ -92,10 +92,6 @@ void solve()
 int main()
 {
     blaze;
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
     int t = 1;
     //   cin >> t;
     for (int i = 1; i <= t; ++i)

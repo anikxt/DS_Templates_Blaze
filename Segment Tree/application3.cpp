@@ -32,26 +32,26 @@ ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
 /*
-
 Design a DS
 
 N arr
 
 Query:
-1 x v -> update   arr[x] = v
+1 x v -> update arr[x] = v
 2 l r -> find max sum subarray [l, r]
-
 */
 
-ll n;
-ll arr[100100];
+#define int long long
+const int N = 200200;
+int n, q;
+int arr[N];
 
 struct node {
-	ll lsum;
-	ll rsum;
-	ll totSum;
-	ll msum;
-	node(ll l = -1e6, ll r = -1e6, ll t = -1e6, ll m = -1e6) {
+	int lsum;
+	int rsum;
+	int totSum;
+	int msum;
+	node(int l = -1e6, int r = -1e6, int t = -1e6, int m = -1e6) {
 		lsum = l;
 		rsum = r;
 		totSum = t;
@@ -68,38 +68,38 @@ node merge(node a, node b) {
 	return c;
 }
 
-node t[400400];
+node t[4 * N];
 
-void build(ll index, ll l, ll r) {
+void build(int index, int l, int r) {
 	if (l == r) {
-		ll x = max(arr[l], 0LL);
+		int x = max(arr[l], 0LL);
 		t[index] = node(arr[l], arr[l], x, arr[l]);
 		return;
 	}
 
-	ll mid = (l + r) / 2;
+	int mid = (l + r) / 2;
 	build(index * 2, l, mid);
 	build(index * 2 + 1, mid + 1, r);
 	t[index] = merge(t[2 * index], t[2 * index + 1]);
 }
 
-void update(ll index, ll l, ll r, ll pos, ll val) {
+void update(int index, int l, int r, int pos, int val) {
 	if (pos < l or pos > r)
 		return;
 
 	if (l == r) {
-		ll x = max(val, 0LL);
+		int x = max(val, 0LL);
 		t[index] = node(val, val, x, val);
 		return;
 	}
 
-	ll mid = (l + r) / 2;
+	int mid = (l + r) / 2;
 	update(index * 2, l, mid, pos, val);
 	update(index * 2 + 1, mid + 1, r, pos, val);
 	t[index] = merge(t[2 * index], t[2 * index + 1]);
 }
 
-node query(ll index, ll l, ll r, ll lq, ll rq) {
+node query(int index, int l, int r, int lq, int rq) {
 	if (l > rq or lq > r)
 		return 0;
 
@@ -108,32 +108,30 @@ node query(ll index, ll l, ll r, ll lq, ll rq) {
 		return t[index];
 	}
 
-	ll mid = (l + r) / 2;
+	int mid = (l + r) / 2;
 	return merge(query(index * 2, l, mid, lq, rq), query(index * 2 + 1, mid + 1, r, lq, rq));
 }
 
 void solve()
 {
-	cin >> n;
-	for (ll i = 1; i <= n; ++i)
+	cin >> n >> q;
+	for (int i = 1; i <= n; ++i)
 	{
 		cin >> arr[i];
 	}
 
 	build(1, 1, n);
 
-	ll q;
-	cin >> q;
 	while (q--)
 	{
-		ll ch;
+		int ch;
 		cin >> ch;
-		if (ch == 0) {
-			ll pos, val;
+		if (ch == 1) {
+			int pos, val;
 			cin >> pos >> val;
 			update(1, 1, n , pos, val);
 		} else {
-			ll l, r;
+			int l, r;
 			cin >> l >> r;
 			node x = query(1, 1, n, l, r);
 			cout << x.msum << endl;
@@ -141,6 +139,7 @@ void solve()
 	}
 	return;
 }
+#undef int
 
 int main()
 {

@@ -76,6 +76,7 @@ void solve()
 	cout << ans << endl;
 	return;
 }
+#undef int
 
 int main()
 {

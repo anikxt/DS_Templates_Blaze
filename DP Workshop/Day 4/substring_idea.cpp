@@ -42,13 +42,13 @@ int rec(int level, int lastthree)
         return 1;
 
     // cache check
-    if (dp[level][lastthree] -= 1)
+    if (dp[level][lastthree] != -1)
         return dp[level][lastthree];
 
     // compute
     int ans = 0;
     if (level >= 3 and lastthree == 2)
-    { // 10.. ... .010
+    {   // 10.. ... .010
         // don't allow
         ans = rec(level + 1, 5);
     }
@@ -75,10 +75,6 @@ void solve()
 int main()
 {
     blaze;
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
     int t = 1;
     // cin >> t;
     for (int i = 1; i <= t; ++i)

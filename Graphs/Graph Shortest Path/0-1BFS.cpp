@@ -32,17 +32,17 @@ ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
 int n, m;
-vector<pair<int, int>> g[100100]; // adj. list
-int dis[100100];
+vector<pair<int, int>> g[200200]; // adj. list
+int dist[200200];
 
 void BFS01(int sc) {
 	deque<int> dq;
 	for (int i = 1; i <= n; ++i)
 	{
-		dis[i] = 1e9;
+		dist[i] = 1e9;
 	}
 
-	dis[sc] = 0;
+	dist[sc] = 0;
 	dq.push_back(sc);
 	while (!dq.empty()) {
 		int xx = dq.front();
@@ -51,8 +51,8 @@ void BFS01(int sc) {
 		for (auto v : g[xx]) {
 			int neigh = v.f;
 			int weigh = v.s;
-			if (dis[neigh] > dis[xx] + weigh) {
-				dis[neigh] = dis[xx] + weigh;
+			if (dist[neigh] > dist[xx] + weigh) {
+				dist[neigh] = dist[xx] + weigh;
 
 				if (weigh == 0) {
 					dq.push_front(neigh);
@@ -66,7 +66,6 @@ void BFS01(int sc) {
 
 void solve()
 {
-	int n, m;
 	cin >> n >> m;
 	for (int i = 0; i < m; ++i)
 	{

@@ -48,7 +48,7 @@ int pathGcd(int u, int v) {
 		}
 	}
 
-	return gcd(ans, val[par[u][0]]);
+	return gcd(ans, val[u], val[v], val[par[u][0]]);
 }
 
 int main() {

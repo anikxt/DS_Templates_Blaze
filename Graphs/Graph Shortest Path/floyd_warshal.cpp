@@ -60,7 +60,7 @@ void solve()
 	{
 		int a, b, c;
 		cin >> a >> b >> c;
-		dist[a][b] = min(dist[a][b], c);
+		dist[a][b] = dist[b][a] = min(dist[a][b], c);
 		// dist[a][b] = c;
 	}
 

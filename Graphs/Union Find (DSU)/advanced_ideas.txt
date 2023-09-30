@@ -1,0 +1,26 @@
+Small to Large merging ideas:
+
+Idea 1 - Weighted Union Find 
+
+Idea 2 - Rollback idea on Union Find
+
+Idea 3 - DSU on tree
+blog - https://codeforces.com/blog/entry/106407 
+
+
+Question:
+Description:
+You have given an undirected graph G with N nodes, indexed from 1 to N and M edges, indexed from 1 to M.
+
+There are two types of operations:
+1 X: Remove the edge numbered X.
+2: Print the number of connected components in the graph
+
+Answer:
+The trick in the problem is to reverse the queries. Instead of addressing them online, we can solve them offline. First, we only add those edges in the graph, which have never occurred in any removal query.
+Now after reversing the queries, the removal query is now an addition query. Add the edge in the graph for the first type of query.
+For 2nd type of query, find the number of connected components and stored it somewhere at the appropriate index, which is according to the original queries.
+And print the answer in proper order. The time and space complexities are the same as DSU.
+
+Time complexity: Without path compression: O(NlogN) & With path compression: O(N)
+Space complexity: O(N + M + Q) extra space

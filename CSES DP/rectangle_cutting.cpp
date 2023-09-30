@@ -32,75 +32,47 @@ ll mod_inv(ll x) {return power(x, MOD - 2);}
 ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
-struct UnionFind {
-	int n, set_size;
-	vector<int> par, sz;
-	UnionFind() {}
-	UnionFind(int a) {
-		n = set_size = a;
-		par.resize(n + 1);
-		sz.resize(n + 1);
-		for (int i = 1; i <= n; ++i)
-		{
-			par[i] = i;
-			sz[i] = 1;
-		}
-	}
-
-	int find(int x) {
-		if (x == par[x])return x;
-		else return (par[x] = find(par[x])); // path compression, updating the parents as well
-	}
-
-	// size compression
-	void unite(int x, int y) { // merge sety into setx
-		int xroot = find(x);
-		int yroot = find(y);
-		if (xroot == yroot)
-			return;
-		if (sz[xroot] < sz[yroot])swap(xroot, yroot); // merging smaller set to larger
-		sz[xroot] += sz[yroot];
-		par[yroot] = xroot;
-		set_size -= 1;
-	}
-
-	void reset() {
-		set_size = n;
-		for (int i = 1; i <= n; ++i)
-		{
-			par[i] = i;
-			sz[i] = 1;
-		}
-	}
-
-	int size() {
-		return set_size;
-	}
-
-	void print() {
-		for (int i = 1; i <= n; ++i)
-		{
-			cout << i << " " << par[i] << endl;
-		}
-	}
-};
+int n, m;
+int dp[1010][1010];
 
 void solve()
 {
+    cin >> n >> m;
+    for (int x = 1; x <= 500; ++x)
+    {
+        for (int y = 1; y <= 500; ++y)
+        {
+            if (x == y) {
+                dp[x][y] = 0;
+            } else {
+                dp[x][y] = 1e9;
+                for (int a = 1; a <= x - 1; ++a)
+                {
+                    dp[x][y] = min(dp[x][y], dp[a][y] + dp[x - a][y] + 1);
+                }
 
-	return;
+                for (int b = 1; b <= y - 1; ++b)
+                {
+                    dp[x][y] = min(dp[x][y], dp[x][b] + dp[x][y - b] + 1);
+                }
+            }
+        }
+    }
+
+    cout << dp[n][m] << endl;
+    return;
 }
 
 int main()
 {
-	blaze;
-	int t = 1;
-	cin >> t;
-	for (int i = 1; i <= t; ++i)
-	{
-		// cout << "Case #" << i << ": ";
-		solve();
-	}
-	// cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl;
-	return 0;
+    blaze;
+    int t = 1;
+    // cin >> t;
+    for (int i = 1; i <= t; ++i)
+    {
+        // cout << "Case #" << i << ": ";
+        solve();
+    }
+    // cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl;
+    return 0;
 }

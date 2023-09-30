@@ -8,6 +8,7 @@ int par[100100];
 int D;
 int cnt = 0;
 
+// dfs on all neighbors of a diameter
 void dfs(int node, int parent, int depth) {
 	dep[node] = depth;
 	if (dep[node] == (D / 2 - 1))cnt++;

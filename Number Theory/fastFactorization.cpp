@@ -18,7 +18,7 @@ vector<long long> FastFactor(int n)
     for (int i = 2; i <= n; ++i)
     {
         if (sp[i] == i)
-        { // that means its a prime
+        {   // that means its a prime
             for (int j = 2 * i; j <= n; j += i)
             {
                 if (sp[j] == j)

@@ -48,7 +48,7 @@ int rec(int level)
 
     // compute
     int ans = 1;
-    for (int prev_taken = 0; prev_taken < n; prev_taken++)
+    for (int prev_taken = 0; prev_taken < level; prev_taken++)
     {
         if (arr[prev_taken] < arr[level])
         {

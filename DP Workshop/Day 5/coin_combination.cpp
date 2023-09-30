@@ -41,34 +41,35 @@ void solve()
         cin >> x[i];
     }
     int dp[n + 1][m + 1];
-    for (int l = n; l >= 0; --l)
+    for (int level = n; level >= 0; --level)
     {
-        for (int s = 0; s <= m; ++s)
+        for (int sum_left = 0; sum_left <= m; ++sum_left)
         {
-            // compute for (l,s)
-            if (l == n)
+            // compute for (level,sum_left)
+            if (level == n)
             {
-                if (s == 0)
+                if (sum_left == 0)
                 {
-                    dp[l][s] = 1;
+                    dp[level][sum_left] = 1;
                 }
                 else
                 {
-                    dp[l][s] = 0;
+                    dp[level][sum_left] = 0;
                 }
             }
             // general
-            dp[l][s] = 0;
-            if (dp[l + 1][s])
+            dp[level][sum_left] = 0;
+            if (dp[level + 1][sum_left])
             {
-                dp[l][s] = 1;
+                dp[level][sum_left] = 1;
             }
-            if (s >= x[l] and dp[l][s - x[l]])
+            if (sum_left >= x[level] and dp[level][sum_left - x[level]])
             {
-                dp[l][s] = 1;
+                dp[level][sum_left] = 1;
             }
         }
     }
+
     cout << dp[n][m] << endl;
     return;
 }

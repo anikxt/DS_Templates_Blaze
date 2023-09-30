@@ -32,75 +32,44 @@ ll mod_inv(ll x) {return power(x, MOD - 2);}
 ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
-struct UnionFind {
-	int n, set_size;
-	vector<int> par, sz;
-	UnionFind() {}
-	UnionFind(int a) {
-		n = set_size = a;
-		par.resize(n + 1);
-		sz.resize(n + 1);
-		for (int i = 1; i <= n; ++i)
-		{
-			par[i] = i;
-			sz[i] = 1;
-		}
-	}
+#define int long long
 
-	int find(int x) {
-		if (x == par[x])return x;
-		else return (par[x] = find(par[x])); // path compression, updating the parents as well
-	}
-
-	// size compression
-	void unite(int x, int y) { // merge sety into setx
-		int xroot = find(x);
-		int yroot = find(y);
-		if (xroot == yroot)
-			return;
-		if (sz[xroot] < sz[yroot])swap(xroot, yroot); // merging smaller set to larger
-		sz[xroot] += sz[yroot];
-		par[yroot] = xroot;
-		set_size -= 1;
-	}
-
-	void reset() {
-		set_size = n;
-		for (int i = 1; i <= n; ++i)
-		{
-			par[i] = i;
-			sz[i] = 1;
-		}
-	}
-
-	int size() {
-		return set_size;
-	}
-
-	void print() {
-		for (int i = 1; i <= n; ++i)
-		{
-			cout << i << " " << par[i] << endl;
-		}
-	}
-};
+int dp[1000100];
 
 void solve()
 {
+    int n;
+    cin >> n;
+    for (int i = 0; i <= n; ++i)
+    {
+        if (i == 0) {
+            dp[i] = 1;
+        } else {
+            dp[i] = 0;
+            for (int j = 1; j <= 6; ++j)
+            {
+                if (j <= i)
+                    dp[i] += dp[i - j];
+            }
+            dp[i] %= MOD;
+        }
+    }
 
-	return;
+    cout << dp[n] << endl;
+    return;
 }
+#undef int
 
 int main()
 {
-	blaze;
-	int t = 1;
-	cin >> t;
-	for (int i = 1; i <= t; ++i)
-	{
-		// cout << "Case #" << i << ": ";
-		solve();
-	}
-	// cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl;
-	return 0;
+    blaze;
+    int t = 1;
+    // cin >> t;
+    for (int i = 1; i <= t; ++i)
+    {
+        // cout << "Case #" << i << ": ";
+        solve();
+    }
+    // cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl;
+    return 0;
 }
