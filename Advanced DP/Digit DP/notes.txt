@@ -1,0 +1,4 @@
+In general, the start parameter can be used in digit DP code to count the number of numbers between a given range that satisfy any condition that can be expressed in terms of the digits of the number.
+
+In the Special-Palindrome Problem:
+If the start parameter is 1, then this code ensures that the first digit of the number is not 0. This is necessary because we are counting the number of special-palindromic numbers, and a special-palindromic number cannot start with a 0.
