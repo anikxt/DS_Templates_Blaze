@@ -36,7 +36,7 @@ ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 
 In-Out DP Tree:
 indp(node) = Summ. (indp(child) + subtreeSz(child))
-outdp(node) = Summ. (outdp(parent) + indp(parent) - (indp(node) - subtreeSz(node)) + (N - subtreeSz(node)))
+outdp(node) = Summ. (outdp(parent) + indp(parent) - (indp(node) + subtreeSz(node)) + (N - subtreeSz(node)))
 
 ans(node) = indp(node) + outdp(node)
 
@@ -79,10 +79,10 @@ void outdfs(int node, int parent) {
     if (node == 1) {
         outdp[node] = 0;
     } else {
-        outdp[node] = outdp[parent] + indp[parent] - (indp[node] + subtreeSz[node]) + (n - subtreeSz(node));
+        outdp[node] = outdp[parent] + indp[parent] - (indp[node] + subtreeSz[node]) + (n - subtreeSz[node]);
     }
 
-    for (auto v : node) {
+    for (auto v : g[node]) {
         if (v != parent) {
             outdfs(v, node);
         }

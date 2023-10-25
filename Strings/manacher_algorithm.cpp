@@ -31,15 +31,21 @@ ll mod_inv(ll x) {return power(x, MOD - 2);}
 ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
+/**
+   works in armotized O(n) TC
+**/
+
 struct manacher {
    vector<int> p;
 
    void run_manacher(string s) {
       int n = s.size();
       p.assign(n, 1);
+      // left and right pointers of a palindrome
       int l = 1, r = 1;
       for (int i = 1; i < n; ++i)
       {
+         // bounding box optimisation
          p[i] = max(0, min(r - i, p[l + r - i]));
          while (i + p[i] < n and i - p[i] >= 0 and s[i + p[i]] == s[i - p[i]]) {
             p[i]++;
@@ -66,6 +72,11 @@ struct manacher {
       run_manacher(t + '#');
    }
 
+   /**
+      abbabba => #a#b#b#a#b#b#a#
+      cen = 1, odd = 1 => a |b| babba  = 1 (b)
+      cen = 1, odd = 0 => ab | babba  = 4 (abba)
+   **/
    int getLongest(int cen, bool odd) {
       int pos = 2 * cen + 1 + (!odd);
       return p[pos] - 1;

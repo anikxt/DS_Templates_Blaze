@@ -1,0 +1,26 @@
+STL functions:
+str.substr(starting index, length)
+
+Strings --|-> Suffix Structure (Aho Corasick)
+		  |
+		  |-> Trie
+		  |
+		  |-> Hashing (Rolling Hash)
+		  |
+		  |-> Algorithms (KMP, Z, Manacher)
+
+
+KMP -> 
+Kinds of Problems:
+A. Searching - Find if string A exist in String B
+
+S   -> a b c a b a b c a
+KMP -> 0 0 0 1 2 1 2 3 1
+
+KMP[i] -> S[0...i], denotes what is the max length proper prefix that is also a suffix?
+
+Search String -> p$t (where p is the string to be searched)
+
+B. Check Periodicity
+Period(S) = S.length - KMP(S)
+if P divides S then YES Periodicity Exists else NO Period
