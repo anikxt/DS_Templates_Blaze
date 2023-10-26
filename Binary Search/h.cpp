@@ -6,8 +6,9 @@ using namespace std;
 //=======================
 
 // Consecutive one
-ll n, k;
-ll arr[100100];
+#define int long long
+int n, k;
+int arr[100100];
 
 int check(int x)
 {
@@ -46,7 +47,7 @@ void solve()
     int ans = lo;
     while (lo <= hi)
     {
-        ll mid = (lo + hi) / 2;
+        int mid = (lo + hi) / 2;
         if (check(mid))
         {
             ans = mid;
@@ -61,7 +62,7 @@ void solve()
     return;
 }
 
-int main()
+signed main()
 {
     blaze;
     int _t = 1;

@@ -6,13 +6,14 @@ using namespace std;
 //=======================
 
 // Kth Sum Value
-ll n, m, k;
-vector<ll> a, b;
+#define int long long
+int n, m, k;
+vector<int> a, b;
 
-ll check(ll x)
+int check(int x)
 {
-    ll cnt = 0;
-    for (ll i = 0; i < n; ++i)
+    int cnt = 0;
+    for (int i = 0; i < n; ++i)
     {
         cnt += upper_bound(all(b), x - a[i]) - b.begin();
     }
@@ -25,11 +26,11 @@ void solve()
     cin >> n >> m >> k;
     a.resize(n);
     b.resize(m);
-    for (ll i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i)
     {
         cin >> a[i];
     }
-    for (ll i = 0; i < m; ++i)
+    for (int i = 0; i < m; ++i)
     {
         cin >> b[i];
     }
@@ -38,15 +39,15 @@ void solve()
         swap(n, m);
         swap(a, b);
     }
-    sortall(a);
-    sortall(b);
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
 
-    ll lo = a[0] + b[0];
-    ll hi = a.back() + b.back();
-    ll ans = -1; // default answer
+    int lo = a[0] + b[0];
+    int hi = a.back() + b.back();
+    int ans = -1; // default answer
     while (lo <= hi)
     {
-        ll mid = (lo + hi) / 2;
+        int mid = (lo + hi) / 2;
         if (check(mid))
         {
             ans = mid;
@@ -61,7 +62,7 @@ void solve()
     return;
 }
 
-int main()
+signed main()
 {
     blaze;
     int _t = 1;

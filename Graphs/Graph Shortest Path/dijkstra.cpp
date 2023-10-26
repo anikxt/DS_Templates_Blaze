@@ -69,16 +69,13 @@ void solve()
 	return;
 }
 
-signed main()
+int main()
 {
 	blaze;
-	int t = 1;
-	cin >> t;
-	for (int i = 1; i <= t; ++i)
-	{
-		// cout << "Case #" << i << ": ";
+	int _t = 1;
+	// cin >> _t;
+	while (_t--) {
 		solve();
 	}
-	// cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl;
 	return 0;
 }
