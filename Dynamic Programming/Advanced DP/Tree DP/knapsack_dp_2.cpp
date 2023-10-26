@@ -1,5 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define endl '\n'
+#define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+//=======================
 using namespace std;
+//=======================
 
 /*
 Problem Statement:
@@ -49,8 +53,13 @@ void solve() {
     cout << max(dp[1][0][k], dp[1][1][k]) << endl;
 }
 
-signed main() {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    //int _t;cin>>_t;while(_t--)
-    solve();
+int main()
+{
+    blaze;
+    int _t = 1;
+    // cin >> _t;
+    while (_t--) {
+        solve();
+    }
+    return 0;
 }

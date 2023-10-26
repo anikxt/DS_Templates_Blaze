@@ -1,34 +1,10 @@
 #include <bits/stdc++.h>
-typedef long long int ll;
-#define gc getchar_unlocked
-#define fab(i, a, b) for (int i = a; i <= b; ++i)
-#define deb(x) cout << #x << "=" << x << endl
-#define deb2(x, y) cout << #x << "=" << x << " " << #y << "=" << y << endl
-#define pb push_back
-#define mp make_pair
-#define f first
-#define s second
-#define all(x) x.begin(), x.end()
-#define sortall(x) sort(all(x))
-#define vll vector<ll>
-#define vi vector<int>
-#define vb vector<bool>
-#define vvi vector<vi>
-#define pii pair<int, int>
-#define pll pair<ll, ll>
+#define F first
+#define S second
 #define endl '\n'
 #define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 //=======================
 using namespace std;
-
-const int MOD = 1e9 + 7;
-//=======================
-ll add(ll x, ll y) {ll res = x + y; return (res >= MOD ? res - MOD : res);}
-ll mul(ll x, ll y) {ll res = x * y; return (res >= MOD ? res % MOD : res);}
-ll sub(ll x, ll y) {ll res = x - y; return (res < 0 ? res + MOD : res);}
-ll power(ll x, ll y) {ll res = 1; x %= MOD; while (y) {if (y & 1)res = mul(res, x); y >>= 1; x = mul(x, x);} return res;}
-ll mod_inv(ll x) {return power(x, MOD - 2);}
-ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
 //=======================
 
 /*
@@ -48,15 +24,15 @@ int dx[] = {1, 0, -1, 0};
 int dy[] = {0, -1, 0, 1};
 
 bool inside(int x, int y) {
-    if (x<0 or x >= n or y<0 or y >= m or arr[x][y] == '#')
+    if (x < 0 or x >= n or y < 0 or y >= m or arr[x][y] == '#')
         return 0;
     return 1;
 }
 
-pii dist[1010][1010];
-pii par[1010][1010];
+pair<int, int> dist[1010][1010];
+pair<int, int> par[1010][1010];
 
-void bfs(pii st) {
+void bfs(pair<int, int> st) {
     for (int i = 0; i < n; ++i)
     {
         for (int j = 0; j < m; ++j)
@@ -65,25 +41,25 @@ void bfs(pii st) {
         }
     }
 
-    dist[st.f][st.s] = {0, 1}; // {current distance, no. of optimal path till this point}
-    queue<pii> q;
+    dist[st.F][st.S] = {0, 1}; // {current distance, no. of optimal path till this point}
+    queue<pair<int, int>> q;
     q.push(st);
     while (!q.empty()) {
         // pehle mark phir push
-        pii cur = q.front();
+        pair<int, int> cur = q.front();
         q.pop();
-        int curd = dist[cur.f][cur.s].f;
+        int curd = dist[cur.F][cur.S].F;
         for (int k = 0; k < 4; ++k)
         {
-            if (!inside(cur.f + dx[k], cur.s + dy[k]))
+            if (!inside(cur.F + dx[k], cur.S + dy[k]))
                 continue;
-            pii neigh = {cur.f + dx[k], cur.s + dy[k]};
-            if (dist[neigh.f][neigh.s].f > curd + 1) { // relax
-                dist[neigh.f][neigh.s] = {curd + 1, dist[cur.f][cur.s].s};
-                par[neigh.f][neigh.s] = cur;
+            pair<int, int> neigh = {cur.F + dx[k], cur.S + dy[k]};
+            if (dist[neigh.F][neigh.S].F > curd + 1) { // relax
+                dist[neigh.F][neigh.S] = {curd + 1, dist[cur.F][cur.S].S};
+                par[neigh.F][neigh.S] = cur;
                 q.push(neigh);
-            } else if (dist[neigh.f][neigh.s].f == curd + 1) {
-                dist[neigh.f][neigh.s].s += dist[cur.f][cur.s].s;
+            } else if (dist[neigh.F][neigh.S].F == curd + 1) {
+                dist[neigh.F][neigh.S].S += dist[cur.F][cur.S].S;
             }
         }
 
@@ -94,7 +70,7 @@ void solve()
 {
     cin >> n >> m;
     arr.resize(n + 1);
-    pii st, en;
+    pair<int, int> st, en;
     for (int i = 0; i < n; ++i)
     {
         cin >> arr[i];
@@ -109,26 +85,26 @@ void solve()
     }
 
     bfs(st);
-    cout << dist[en.f][en.s].f << " " << dist[en.f][en.s].s << endl;
+    cout << dist[en.F][en.S].F << " " << dist[en.F][en.S].S << endl;
     // for (int i = 0; i < n; ++i)
     // {
     //     for (int j = 0; j < m; ++j)
     //     {
-    //         cout << dist[i][j].f << "\t";
+    //         cout << dist[i][j].F << "\t";
     //     }
     //     cout << endl;
     // }
 
-    // pii temp = en;
-    // vector<pii> path;
+    // pair<int,int> temp = en;
+    // vector<pair<int,int>> path;
     // while (temp != st) {
     //     path.push_back(temp);
-    //     temp =  par[temp.f][temp.s];
+    //     temp =  par[temp.F][temp.S];
     // }
     // path.push_back(st);
     // reverse(all(path));
     // for (auto v : path) {
-    //     cout << v.f << " " << v.s << endl;
+    //     cout << v.F << " " << v.S << endl;
     // }
     return;
 }
@@ -136,13 +112,10 @@ void solve()
 int main()
 {
     blaze;
-    int t = 1;
-    // cin >> t;
-    for (int i = 1; i <= t; ++i)
-    {
-        // cout << "Case #" << i << ": ";
+    int _t = 1;
+    // cin >> _t;
+    while (_t--) {
         solve();
     }
-    // cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl;
     return 0;
 }

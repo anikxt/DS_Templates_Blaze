@@ -148,12 +148,13 @@ void solve() {
 }
 #undef int
 
-int main() {
+int main()
+{
     blaze;
-    int _t; cin >> _t;
-    for (int i = 1; i <= _t; i++) {
+    int _t = 1;
+    cin >> _t;
+    while (_t--) {
         solve();
     }
-
     return 0;
 }

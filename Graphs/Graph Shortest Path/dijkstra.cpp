@@ -1,73 +1,49 @@
 #include <bits/stdc++.h>
-typedef long long int ll;
-#define gc getchar_unlocked
-#define fab(i, a, b) for (int i = a; i <= b; ++i)
-#define deb(x) cout << #x << "=" << x << endl
-#define deb2(x, y) cout << #x << "=" << x << " " << #y << "=" << y << endl
-#define pb push_back
-#define mp make_pair
-#define f first
-#define s second
-#define all(x) x.begin(), x.end()
-#define sortall(x) sort(all(x))
-#define vll vector<ll>
-#define vi vector<int>
-#define vb vector<bool>
-#define vvi vector<vi>
-#define pii pair<int, int>
-#define pll pair<ll, ll>
+#define F first
+#define S second
 #define endl '\n'
 #define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 //=======================
 using namespace std;
-
-const int MOD = 1e9 + 7;
 //=======================
-ll add(ll x, ll y) {ll res = x + y; return (res >= MOD ? res - MOD : res);}
-ll mul(ll x, ll y) {ll res = x * y; return (res >= MOD ? res % MOD : res);}
-ll sub(ll x, ll y) {ll res = x - y; return (res < 0 ? res + MOD : res);}
-ll power(ll x, ll y) {ll res = 1; x %= MOD; while (y) {if (y & 1)res = mul(res, x); y >>= 1; x = mul(x, x);} return res;}
-ll mod_inv(ll x) {return power(x, MOD - 2);}
-ll lcm(ll x, ll y) { ll res = x / __gcd(x, y); return (res * y);}
-//=======================
-
 
 /*
 Consider the undirected graph with just edge 1 2 1 and the directed graph with edge 1 2 1.
 The distance between 2 to 1 in the undirected graph is 1, but in the directed graph is +inf.
 */
 
+#define int long long
 class prioritize {
-public: bool operator ()(pii &p1, pii &p2) {
-		return p1.s > p2.s;
+public: bool operator ()(pair<int, int> &p1, pair<int, int> &p2) {
+		return p1.S > p2.S;
 	}
 };
 
 int n, m;
-vector<pii> g[100100];
+vector<pair<int, int>> g[100100];
 
-ll dist[100100];
+int dist[100100];
 int vis[100100];
 
 void dijkstra(int sc) {
-	priority_queue<pii, vector<pii>, prioritize> pq;
+	priority_queue<pair<int, int>, vector<pair<int, int>>, prioritize> pq;
 	dist[sc] = 0;
-	pq.push(mp(sc, 0));
+	pq.push(make_pair(sc, 0));
 
 	while (!pq.empty()) {
-		pii fs = pq.top();
+		pair<int, int> fs = pq.top();
 		pq.pop();
 
-		if (vis[fs.f])
+		if (vis[fs.F])
 			continue;
-		vis[fs.f] = 1;
+		vis[fs.F] = 1;
 
-		for (auto v : g[fs.f]) {
-			int neigh = v.f;
-			int wt = v.s;
-			if (dist[neigh] > dist[fs.f] + wt) {
-				dist[neigh] = dist[fs.f] + wt;
-				pq.push(mp(neigh, dist[neigh]));
+		for (auto v : g[fs.F]) {
+			int neigh = v.F;
+			int wt = v.S;
+			if (dist[neigh] > dist[fs.F] + wt) {
+				dist[neigh] = dist[fs.F] + wt;
+				pq.push(make_pair(neigh, dist[neigh]));
 			}
 		}
 	}
@@ -93,7 +69,7 @@ void solve()
 	return;
 }
 
-int main()
+signed main()
 {
 	blaze;
 	int t = 1;

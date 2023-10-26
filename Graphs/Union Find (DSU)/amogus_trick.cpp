@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
+#define endl '\n'
+#define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+//=======================
 using namespace std;
+//=======================
 
 // Amogus Trick
 // https://codeforces.com/blog/entry/106407
@@ -65,10 +69,11 @@ void solve()
 
 int main()
 {
-    ios_base::sync_with_stdio(0); cin.tie(0);
-    int n;
-    cin >> n;
-    while (n--)
+    blaze;
+    int _t;
+    cin >> _t;
+    while (_t--) {
         solve();
+    }
     return 0;
 }

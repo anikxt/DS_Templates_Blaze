@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
+#define endl '\n'
+#define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+//=======================
 using namespace std;
+//=======================
 
 /*
 Read the trick properly once.
@@ -101,13 +105,11 @@ void testcase() {
 
 
 int main() {
-    ios::sync_with_stdio(false); cin.tie(0);
-
-    int tt;
-    cin >> tt;
-    while (tt--) {
+    blaze;
+    int _t;
+    cin >> _t;
+    while (_t--) {
         testcase();
     }
-
     return 0;
 }

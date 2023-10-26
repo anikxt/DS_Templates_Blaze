@@ -1,5 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define endl '\n'
+#define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+//=======================
 using namespace std;
+//=======================
 
 vector<vector<pair<int, int>>> g;
 
@@ -28,7 +32,7 @@ void solve() {
 }
 
 signed main() {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    blaze;
     //int _t;cin>>_t;while(_t--)
     solve();
 }

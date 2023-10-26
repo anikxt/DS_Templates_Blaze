@@ -1,5 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define endl '\n'
+#define blaze ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+//=======================
 using namespace std;
+//=======================
 
 // Kosaraju's Algorithm
 
@@ -82,12 +86,11 @@ void solve() {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
-
-    int t = 1;
-    // cin>>t;
-    for (int i = 0; i < t; i++) {
+    blaze;
+    int _t = 1;
+    // cin>>_t;
+    while (_t--) {
         solve();
     }
+    return 0;
 }
