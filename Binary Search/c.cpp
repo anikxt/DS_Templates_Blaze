@@ -5,7 +5,7 @@
 using namespace std;
 //=======================
 
-// Rotated Array
+// Rotated Array (strictly increasing)
 int n;
 int arr[100100];
 
@@ -27,7 +27,7 @@ void solve()
 
     int lo = 0;
     int hi = n - 1;
-    int ans = -1;
+    int ans = 0; // default answer
     while (lo <= hi)
     {
         int mid = (lo + hi) / 2;
@@ -42,6 +42,7 @@ void solve()
         }
     }
 
+    cout << n - ans << endl;
     return;
 }
 

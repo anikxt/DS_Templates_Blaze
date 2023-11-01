@@ -27,7 +27,8 @@ bool check(int x)
         if (needed > k)
             return 0;
     }
-    return 1;
+
+    return (needed <= k);
 }
 
 void solve()

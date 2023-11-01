@@ -5,70 +5,73 @@
 using namespace std;
 //=======================
 
-// Consecutive one
-#define int long long
+// Binary Search on Each Start
+
+/*
+This is a typical Binary Search on Each Start Problem
+
+Problem Statement:
+Find the # of subarray that you can make all 1's by <= k flips
+
+Constraints:
+1 <= N <= 1e5
+0 <= K <= N
+0 <= Ai <= 1
+
+Idea:
+# of 0's (st, end) <= k
+*/
+
 int n, k;
 int arr[100100];
+int p[100100];
 
-int check(int x)
-{
-    int cnt = 0, i;
-    for (i = 0; i < x; ++i)
-    {
-        if (arr[i] == 0)
-            cnt++;
-    }
-
-    if (cnt <= k)
-        return true;
-
-    for (i = x; i < n; ++i)
-    {
-        if (arr[i - x] == 0)
-            cnt--;
-        if (arr[i] == 0)
-            cnt++;
-        if (cnt <= k)
-            return true;
-    }
-    return false;
+int numZero(int l, int r) {
+    int ans = (r - l + 1) - (p[r] - (l > 0 ? p[l - 1] : 0));
+    return ans;
 }
 
-void solve()
-{
+bool check(int st, int x) {
+    return numZero(st, x) <= k;
+}
+
+void solve() {
     cin >> n >> k;
     for (int i = 0; i < n; ++i)
     {
         cin >> arr[i];
+        p[i] = arr[i];
+        if (i)p[i] += p[i - 1];
     }
 
-    int lo = k;
-    int hi = n;
-    int ans = lo;
-    while (lo <= hi)
+    long long total = 0;
+    for (int st = 0; st < n; ++st)
     {
-        int mid = (lo + hi) / 2;
-        if (check(mid))
-        {
-            ans = mid;
-            lo = mid + 1;
+        int lo = st;
+        int hi = n - 1;
+        int ans = st - 1;
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            if (check(st, mid)) {
+                ans = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
         }
-        else
-        {
-            hi = mid - 1;
-        }
+
+        // (end - start + 1)
+        total += (ans - (st - 1));
     }
-    cout << ans << endl;
+
+    cout << total << endl;
     return;
 }
 
-signed main()
+int main()
 {
     blaze;
-    int _t = 1;
-    cin >> _t;
-    while (_t--) {
-        solve();
-    }
+    // int _t; cin >> _t; while (_t--)
+    solve();
     return 0;
 }
