@@ -1,8 +1,8 @@
-Tree DP Types |-- In-Out DP Tree 
-			  |
-			  |-- Knapasck DP Tree
-			  |
-			  |-- Ancenstral Ideas of Tree DP
+Tree DP Types |--> In-Out DP Tree 
+              |
+	        |--> Knapasck DP Tree
+		  |
+		  |--> Ancenstral Ideas of Tree DP
 
 
 
@@ -12,11 +12,11 @@ outdp(node) = Summ. (outdp(parent) + indp(parent) - (indp(node) - subtreeSz(node
 
 ans(node) = indp(node) + outdp(node)
 
-   	  root  (outdp(root) = 0) (we build from top to bottom)
+      root  (outdp(root) = 0) (we build from top to bottom)
       / \
      /   \
      B    C
     / \
    /   \
  leaf leaf (indp(leaf) = 0) (we build from bottom to top)
-
+ 

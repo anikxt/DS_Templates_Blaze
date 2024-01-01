@@ -5,7 +5,7 @@
 using namespace std;
 //=======================
 
-// lower_bound
+// lower_bound (first number >= X)
 int n, X;
 int arr[100100];
 

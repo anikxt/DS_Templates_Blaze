@@ -5,11 +5,13 @@
 using namespace std;
 //=======================
 
-vector<long long> Divisors(long long x)
-{
-    vector<long long> ans;
+#define int long long
 
-    for (long long i = 1; i * i <= x; i++)
+vector<int> Divisors(int x)
+{
+    vector<int> ans;
+
+    for (int  i = 1; i * i <= x; i++)
     {
         if (x % i == 0)
         {
@@ -23,12 +25,12 @@ vector<long long> Divisors(long long x)
     return ans;
 }
 
-int main()
+signed main()
 {
     blaze;
-    long long x;
+    int x;
     cin >> x;
-    vector<long long> ans = Divisors(x);
+    vector<int> ans = Divisors(x);
 
     for (auto i : ans)
     {

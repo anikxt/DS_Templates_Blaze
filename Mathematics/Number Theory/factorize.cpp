@@ -5,11 +5,13 @@
 using namespace std;
 //=======================
 
-vector<pair<long, long>> Factors(long long x)
-{
-    vector<pair<long, long>> ans;
+#define int long long
 
-    for (long long i = 2; i * i <= x; i++)
+vector<pair<int, int>> Factors(int x)
+{
+    vector<pair<int, int>> ans;
+
+    for (int i = 2; i * i <= x; i++)
     {
         if (x % i == 0)
         {
@@ -32,9 +34,9 @@ vector<pair<long, long>> Factors(long long x)
 int main()
 {
     blaze;
-    long long x;
+    int x;
     cin >> x;
-    vector<pair<long, long>> ans = Factors(x);
+    vector<pair<int, int>> ans = Factors(x);
 
     for (auto i : ans)
     {

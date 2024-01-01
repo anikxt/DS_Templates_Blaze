@@ -27,7 +27,7 @@ void solve()
 
     int lo = 0;
     int hi = n - 1;
-    int ans = n; // default answer
+    int ans = n; // default answer (can keep it anything)
     while (lo <= hi)
     {
         int mid = (lo + hi) / 2;

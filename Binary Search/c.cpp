@@ -42,7 +42,7 @@ void solve()
         }
     }
 
-    cout << n - ans << endl;
+    cout << ans << endl;
     return;
 }
 

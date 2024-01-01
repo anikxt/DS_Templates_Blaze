@@ -22,8 +22,7 @@ void solve()
     map<int, int> freq;
 
     // pointers
-    int head = -1,
-        tail = 0;
+    int head = -1, tail = 0;
     ll ans = 0;
     while (tail < n)
     {
