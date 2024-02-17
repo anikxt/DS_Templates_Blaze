@@ -23,7 +23,7 @@ void solve()
 
     // pointers
     int head = -1, tail = 0;
-    ll ans = 0;
+    int ans = 0;
     while (tail < n)
     {
         // while there is a next element to take and we will not violate any condition
@@ -71,7 +71,8 @@ int main()
     blaze;
     int _t = 1;
     cin >> _t;
-    while (_t--) {
+    while (_t--)
+    {
         solve();
     }
     return 0;

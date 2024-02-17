@@ -30,6 +30,7 @@ void solve()
         if (lis.empty() or lis.back() < arr[i])
         {
             lis.push_back(arr[i]);
+            // which length the element i is inserted at
             insertedat[i] = lis.size();
         }
         else
@@ -52,6 +53,7 @@ void solve()
     }
 
     reverse(final_lis.begin(), final_lis.end());
+    cout << lis.size() << endl;
     for (auto v : final_lis)
         cout << v << " ";
     return;
@@ -61,7 +63,7 @@ int main()
 {
     blaze;
     int _t = 1;
-    cin >> _t;
+    // cin >> _t;
     while (_t--) {
         solve();
     }
