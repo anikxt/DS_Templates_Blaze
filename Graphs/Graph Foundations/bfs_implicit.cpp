@@ -17,6 +17,7 @@ using namespace std;
 
 int n, m;
 vector<vector<int>> g;
+int dist[1010];
 
 void bfs(int st) {
     for (int i = 1; i <= n; ++i)
